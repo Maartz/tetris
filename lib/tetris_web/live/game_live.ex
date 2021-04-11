@@ -19,7 +19,7 @@ defmodule TetrisWeb.GameLive do
       <h1>Tetrelixir</h1>
       <%= render_board(assigns) %>
       <pre>
-        {<%= x %>, <%= y %>}
+        <%= inspect @tetro %>
       </pre>
     </section>
     """

@@ -1,8 +1,9 @@
 defmodule Tetris.Points do
+  alias Tetris.Point
 
-  def move(points, {x, y}) do
+  def move(points, coordinates) do
     points
-    |> Enum.map(fn {tx, ty} -> {tx + x, ty + y} end)
+    |> Enum.map(&Point.move(&1, coordinates))
   end
 
 end
