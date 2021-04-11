@@ -30,13 +30,11 @@ defmodule TetrisWeb.GameLive do
   end
 
   def down(%{assigns: %{tetro: tetro}} = socket) do
-    socket
-    |> assign(:tetro, Tetromino.down(tetro))
-    |> show
+    assign(socket, :tetro, Tetromino.down(tetro))
   end
 
   def handle_info(:tick, socket) do
-    {:noreply, down(socket)}
+    {:noreply, socket |> down |> show}
   end
 
   defp render_board(assigns) do
