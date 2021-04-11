@@ -1,8 +1,7 @@
 defmodule Tetris.Tetromino do
-
   alias Tetris.Point
 
-  defstruct shape: :l, rotation: 0, location: {5, 1} 
+  defstruct shape: :l, rotation: 0, location: {5, 1}
 
   def new(options \\ []) do
     __struct__(options)
@@ -28,12 +27,10 @@ defmodule Tetris.Tetromino do
     %{tetro | rotation: rotate_degrees(tetro.rotation)}
   end
 
-
   defp random_shape do
-    ~w(i j l s z o t)a |> Enum.random
+    ~w(i j l s z o t)a |> Enum.random()
   end
 
   defp rotate_degrees(270), do: 0
   defp rotate_degrees(n), do: n + 90
-
 end
