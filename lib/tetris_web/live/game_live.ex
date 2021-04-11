@@ -14,12 +14,14 @@ defmodule TetrisWeb.GameLive do
 
   def render(assigns) do
     ~L"""
-    <h1>Tetrelixir</h1>
-    <%= render_board(assigns) %>
-    <% [{x, y}] = @points %>
-    <pre>
-      {<%= x %>, <%= y %>}
-    </pre>
+    <% {x, y} = @tetro.location %>
+    <section class="phx-hero">
+      <h1>Tetrelixir</h1>
+      <%= render_board(assigns) %>
+      <pre>
+        {<%= x %>, <%= y %>}
+      </pre>
+    </section>
     """
   end
 
@@ -46,13 +48,16 @@ defmodule TetrisWeb.GameLive do
     """
   end
 
-  defp render_points(%{points: [{x, y}]} = assigns) do
+  defp render_points(assigns) do
     ~L"""
+    <%= for point <- @points do %>
+    <% {x, y} = point %>
     <rect
       width="20" height="20"
       x="<%= (x - 1) * 20 %>", y="<%= (y - 1) * 20 %>"
       style="fill:rgb(255,0,0);"
     />
+    <% end %>
     """
   end
 
