@@ -63,7 +63,7 @@ defmodule TetrisWeb.GameLive do
 
   defp show(socket) do
     assign(socket,
-      points: Tetromino.points(socket.assigns.tetro)
+      points: Tetromino.show(socket.assigns.tetro)
      )
   end
 
