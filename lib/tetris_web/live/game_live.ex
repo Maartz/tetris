@@ -37,7 +37,18 @@ defmodule TetrisWeb.GameLive do
     ~L"""
     <svg width="200" height="400">
       <rect width="200" height="400" style="fill:rgb(0,0,0);" />
+      <%= render_points(assigns) %>
     </svg>
+    """
+  end
+
+  defp render_points(%{points: [{x, y}]} = assigns) do
+    ~L"""
+    <rect
+      width="20" height="20"
+      x="<%= (x - 1) * 20 %>", y="<%= (y - 1) * 20 %>"
+      style="fill:rgb(255,0,0);"
+    />
     """
   end
 
