@@ -17,13 +17,20 @@ defmodule TetrisWeb.GameLive do
 
   def render(assigns) do
     ~L"""
+    <% {x, y} = @tetro.location %>
     <pre>
-      <%= inspect @tetro %>
+      shape   : <%= inspect @tetro.shape %>
+      rotation: <%= inspect @tetro.rotation %>
+      location: {<%= x %>, <%= y %>}
     </pre>
     """
   end
 
+  def down(%{assigns: %{tetro: tetro}} = socket) do
+    assign(socket, :tetro, Tetromino.down(tetro))
+  end
+
   def handle_info(:tick, socket) do
-    {:noreply, socket}
+    {:noreply, down(socket)}
   end
 end
