@@ -1,5 +1,5 @@
 defmodule Tetris.Tetromino do
-  alias Tetris.Point
+  alias Tetris.{Point, Points}
 
   defstruct shape: :l, rotation: 0, location: {5, 1}
 
@@ -28,7 +28,12 @@ defmodule Tetris.Tetromino do
   end
 
   def points(tetro) do
-    [tetro.location]
+    [
+      {2, 1},
+      {2, 2},
+      {2, 3}, {3, 3}
+    ]
+    |> Points.move(tetro.location)
   end
 
   defp random_shape do
