@@ -23,6 +23,12 @@ defmodule TetrisWeb.GameLive do
     """
   end
 
+  def down(%{assigns: %{tetro: %{location: {_, 20}}}} = socket) do
+    socket
+    |>  new_tetromino()
+    |> show
+  end
+
   def down(%{assigns: %{tetro: tetro}} = socket) do
     socket
     |> assign(:tetro, Tetromino.down(tetro))
