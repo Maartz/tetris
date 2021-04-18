@@ -53,15 +53,24 @@ defmodule TetrisWeb.GameLive do
 
   defp render_points(assigns) do
     ~L"""
-    <%= for {x, y} <- @points do %>
+    <%= for {x, y, shape} <- @points do %>
     <rect
       width="20" height="20"
       x="<%= (x - 1) * 20 %>", y="<%= (y - 1) * 20 %>"
-      style="fill:red;"
+      style="fill:<%= color(shape) %>;"
     />
     <% end %>
     """
   end
+
+  defp color(:l), do: "firebrick"
+  defp color(:j), do: "dodgerblue"
+  defp color(:z), do: "darkorange"
+  defp color(:s), do: "gold"
+  defp color(:o), do: "hotpink"
+  defp color(:i), do: "lime"
+  defp color(:t), do: "mediumorchid"
+  defp color(_),  do: "red"
 
   defp show(socket) do
     assign(socket,
