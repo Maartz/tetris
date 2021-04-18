@@ -4,7 +4,10 @@ defmodule TetrisWeb.GameLive do
   alias Tetris.Tetromino
 
   def mount(_params, _session, socket) do
-    :timer.send_interval(500, :tick)
+    if connected?(socket) do
+       :timer.send_interval(500, :tick)
+    end
+
     {:ok,
       socket
       |> new_tetromino
@@ -50,12 +53,11 @@ defmodule TetrisWeb.GameLive do
 
   defp render_points(assigns) do
     ~L"""
-    <%= for point <- @points do %>
-    <% {x, y} = point %>
+    <%= for {x, y} <- @points do %>
     <rect
       width="20" height="20"
       x="<%= (x - 1) * 20 %>", y="<%= (y - 1) * 20 %>"
-      style="fill:rgb(255,0,0);"
+      style="fill:red;"
     />
     <% end %>
     """
